@@ -1,0 +1,125 @@
+#mynetwork {
+  margin-top: 27px;
+  margin-bottom: 2px;
+  min-height: 900px;
+  height: 900px;
+  resize: vertical;
+  width: 79%;
+  float: right;
+  border: 1px solid var(--dark-border-color);
+  background: #303534;
+  font-family: consolas;
+  overflow: auto;
+}
+
+.network{
+  display:inline-block;
+  height: 300px;
+  width: 98%;
+  background: #303534;
+  border: 2px solid #575f5d;
+  padding: 1% 1% 1% 1%;
+  white-space: normal;
+  font-family: consolas;
+}
+
+#network-array{
+  width: 0px;
+  height: 100%;
+  position: absolute;
+  top: 0%;
+  right: -310px;
+  transition: 0.1s;
+}
+#network-array.active {
+  width: 300px;
+  height: 110%;
+  position: absolute;
+  box-shadow: 0 0 10px #000000;
+  top: 0%;
+  right: 0%;
+  background: #303534;
+  overflow-x: auto;
+  font-family: consolas;
+  transition: 0.1s;
+}
+
+#sentences-array {
+  margin-top: 27px;
+  margin-bottom: 2px;
+  height: 900px;
+  width: 20%;
+  
+  border: 1px solid var(--dark-border-color);
+  background: #303534;
+  white-space: normal;
+  overflow-x: auto;
+  float: left;
+  font-family: consolas;
+}
+
+.largenetwork{
+  height: 100%;
+  width: 100%;
+  background: #303534;
+  font-family: consolas;
+}
+.text_in{
+  font-size: 14px;
+  width: 100%;
+  color: #ffffff;
+  background-color: #575f5d;
+  border: 1px solid var(--dark-border-color);
+  padding: 1% 1% 1% 1%;
+  box-sizing: border-box;
+  font-family: consolas;
+}
+.text_in:focus{
+  height: 200px;
+}
+
+.number-inputarea{
+  white-space: nowrap;
+  float: left;
+}
+.thres_in{
+  display: flex;
+}
+#lblthres{
+  font-size: 10px;
+  color: #ffffff;
+  width: 40px;
+}
+#numberthres{
+  height: 20px;
+  width: 40px;
+  margin: 1px 1px 1px 1px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  color: #ffffff;
+  background-color: #575f5d;
+  border: 1px solid var(--dark-border-color);
+  box-sizing: border-box;
+}
+
+.target_in{
+  display: flex;
+}
+#lbltarget{
+  font-size: 10px;
+  color: #ffffff;
+  width: 40px;
+}
+#target{
+  height: 20px;
+  width: 40px;
+  margin: 1px 1px 1px 1px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  color: #ffffff;
+  background-color: #575f5d;
+  border: 1px solid var(--dark-border-color);
+  box-sizing: border-box;
+}

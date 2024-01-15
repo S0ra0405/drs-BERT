@@ -1,0 +1,138 @@
+button{
+    border-radius: 25%;
+    border: 1px solid var(--dark-border-color);
+    background: white;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: left top;
+}
+button:hover{
+    background: rgb(219, 219, 219);
+}
+
+
+.undobutton {
+    float: left;
+    margin: 0px 4px 2px 1%;
+    padding: 1px 0px 1px 0px;
+    width: 20px;
+    height: 20px;
+    max-width: 20px;
+    max-height: 20px;
+    background-image: url(https://icongr.am/clarity/undo.svg?size=18&color=000000);
+}
+.redobutton {
+    float: left;
+    margin: 0px 0px 2px 0px;
+    padding: 1px 0px 1px 0px;
+    width: 20px;
+    height: 20px;
+    max-width: 20px;
+    max-height: 20px;
+    background-image: url(https://icongr.am/clarity/redo.svg?size=18&color=000000);
+}
+.undobutton:hover{
+    background-image: url(https://icongr.am/clarity/undo.svg?size=18&color=000000);
+}
+.redobutton:hover{
+    background-image: url(https://icongr.am/clarity/redo.svg?size=18&color=000000);
+}
+
+
+#network-array-button{
+    position: absolute;
+    top: 40px;
+    right: 15px;
+    width: 30px;
+    height:30px;
+    border-radius: 50%;
+    background-image: url(https://icongr.am/clarity/ellipsis-vertical.svg?size=30&color=FFFFFF);
+    transition: 0.1s;
+}
+#network-array-button.active{
+    position: absolute;
+    top: 6px;
+    right: 264px;
+    width: 30px;
+    height:30px;
+    border-radius: 50%;
+    background-image: url(https://icongr.am/clarity/close.svg?size=30&color=FFFFFF);
+    transition: 0.1s;
+}
+
+
+.splitbutton{
+    height: 20px;
+    width: 20%;
+    float: left;
+    padding: 1px 0px 1px 0px;
+    text-align: center;
+    border-radius: 0%;
+    margin-bottom: 2px;
+}
+
+
+.subbutton{
+    height: 40px;
+    width: 80px;
+    border-radius: 0%;
+}
+
+
+.editbutton {
+    position: relative;
+    text-align: center;
+    float: right;
+    border-radius: 0%;
+    height: 20px;
+    width: 21%;
+    display: inline-block;
+    margin: 0px 2px 0px 2px;
+    padding: 1px 0px 1px 0px;
+    font-family: consolas;
+}
+
+
+.text_display_child{
+    width: 100%;
+    white-space: normal;
+    border: 1px solid #575f5d;
+    border-radius: 0%;
+    background: #303534;
+    color: #ffffff;
+    font-size: 10px;
+    font-family: consolas;
+}
+.text_display_child:hover {
+    background: #232726;
+}
+
+
+.dlbutton{
+    position: absolute;
+    text-align: center;
+    padding: 1px 0px 1px 0px;
+    float: right;
+    float: bottom;
+    border-radius: 0%;
+    height: 20px;
+    width: 21%;
+    border: 1px solid #1d4288;
+    background: #3170e7;
+    color: white;
+}
+
+.csvbutton{
+    position: relative;
+    text-align: center;
+    padding: 1px 0px 1px 0px;
+    float: right;
+    float: bottom;
+    border-radius: 0%;
+    height: 20px;
+    width: 21%;
+    border: 1px solid #fbd4ff;
+    background: #e73149;
+    color: rgb(197, 78, 78);
+}

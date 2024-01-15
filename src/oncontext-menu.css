@@ -1,0 +1,8 @@
+.custom-menu{
+    position: absolute;
+    visibility : hidden;
+    width: 40px;
+    height: 20px;
+    background: rgb(219, 219, 219);
+    border-radius: 25%;
+}
