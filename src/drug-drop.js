@@ -25,7 +25,10 @@
           direction: "UD",
           sortMethod: "directed",
           levelSeparation: node_maxheight +20,
+<<<<<<< HEAD
           // levelSeparation: 100,
+=======
+>>>>>>> 6b1d98e (add src)
           nodeSpacing: node_maxwidth
         }
       },
@@ -38,6 +41,7 @@
         },
         color: {color: '#76eec6'},
         arrows: {
+<<<<<<< HEAD
           to: {
             enabled: true,
             type: 'arrow'
@@ -45,6 +49,12 @@
         },
         smooth: {
           enabled: false // これでエッジを直線にする
+=======
+            to:{
+                enabled: true,
+                type: 'arrow'
+            }
+>>>>>>> 6b1d98e (add src)
         }
       },
       nodes: {

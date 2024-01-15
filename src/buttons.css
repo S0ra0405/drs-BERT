@@ -52,6 +52,7 @@ button:hover{
 }
 #network-array-button.active{
     position: absolute;
+    top: 6px;
     right: 264px;
     width: 30px;
     height:30px;
@@ -115,7 +116,7 @@ button:hover{
     float: right;
     float: bottom;
     border-radius: 0%;
-    height: 40px;
+    height: 20px;
     width: 21%;
     border: 1px solid #1d4288;
     background: #3170e7;

@@ -48,7 +48,6 @@ function getBaseNetworkOption(height, width, node_maxheight, node_maxwidth){
                 "centralGravity": 0.0,
                 "springLength": 500,
                 "springConstant": 0.01,
-
                 "nodeDistance": 50,
                 "springLength": 150,
                 "damping": 1.0
