@@ -2,7 +2,7 @@
   margin-top: 27px;
   margin-bottom: 2px;
   min-height: 925px;
-  height: 925px;
+  height: 85vh;
   resize: vertical;
   width: 79%;
   float: right;
@@ -47,7 +47,7 @@
 #sentences-array {
   margin-top: 27px;
   margin-bottom: 2px;
-  height: 925px;
+  height: 85vh;
   width: 20%;
   
   border: 1px solid var(--dark-border-color);
@@ -74,9 +74,9 @@
   box-sizing: border-box;
   font-family: consolas;
 }
-.text_in:focus{
+/* .text_in:focus{
   height: 200px;
-}
+} */
 
 .number-inputarea{
   white-space: nowrap;
