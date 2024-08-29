@@ -40,6 +40,7 @@ function UndoAction(){
         direction: "UD",
         sortMethod: "directed",
         levelSeparation: node_maxheight +20,
+        //levelSeparation: 100,
         nodeSpacing: node_maxwidth
       }
     },
@@ -56,6 +57,9 @@ function UndoAction(){
           enabled: true,
           type: 'arrow'
         }
+      },
+      smooth: {
+        enabled: false
       }
     },
     nodes: {

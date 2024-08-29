@@ -39,7 +39,7 @@ from transformers import BertJapaneseTokenizer, BertForSequenceClassification,Be
 #import pytorch_lightning as pl
 import torch.nn as nn
 
-MODEL_NAME = 'cl-tohoku/bert-base-japanese-whole-word-masking'
+MODEL_NAME = 'tohoku-nlp/bert-base-japanese-whole-word-masking'
 tokenizer = BertJapaneseTokenizer.from_pretrained(MODEL_NAME)
 
 """# Programs
@@ -105,6 +105,11 @@ def make_vec(p):
   input_ids = tokenizer.encode(p, add_special_tokens=True)
   input_ids = torch.tensor(input_ids).unsqueeze(0)  # バッチサイズ1で入力
 
+  return input_ids
+
+def make_vec_2sentences(p1, p2):
+  input_ids = tokenizer.encode(p1,p2,add_special_tokens=True)
+  input_ids = torch.tensor(input_ids).unsqueeze(0)  # バッチサイズ1で入力
   return input_ids
 
 def Content_Classification(paragraph):
@@ -214,108 +219,127 @@ def Paragraph_to_Conjuction_addmat(df_conjuction_attr, df_conjuction_points, sen
   addmat = np.zeros((len(sentences), len(sentences)), dtype=int)
   cases = pd.DataFrame({'matrix':[addmat], 'label':['']})
 
-  def makemat(s, attr):
-    word = attr['word']
-    attribute = attr['attr']
-    label = str(str(s+1)+"文目:「"+word+"」が"+attribute+"\n")
-    df_attr_priority = df_conjuction_priority_arr[attribute]
-    priority = search_Priority(df_attr_priority, word)
+  # def makemat(s, attr):
+  #   word = attr['word']
+  #   attribute = attr['attr']
+  #   label = str(str(s+1)+"文目:「"+word+"」が"+attribute+"\n")
+  #   df_attr_priority = df_conjuction_priority_arr[attribute]
+  #   priority = search_Priority(df_attr_priority, word)
 
-    #接続関係とルールのマッチング
-    rules = search_Rules(df_conjuction_points, attr)
-    mat = Conjuction_addmat(rules, len_sentence, s, arr_content, priority)
-    #pprint.pprint(mat)
-    return label, mat
+  #   #接続関係とルールのマッチング
+  #   rules = search_Rules(df_conjuction_points, attr)
+  #   mat = Conjuction_addmat(rules, len_sentence, s, arr_content, priority)
+  #   #pprint.pprint(mat)
+  #   return label, mat
     
-  for s in range(len_sentence):
-    #単語と接続関係のマッチング
-    arr_attr = search_Conjuction(df_conjuction_attr, sentences[s])
-    if type(arr_attr) is not int:
-        base0 = cases.copy()
-        cases.drop(cases.index, inplace=True)
-        for index, attr in arr_attr.iterrows():
-            label, matrix = makemat(s, attr)    
-            base1 = base0.copy()
-            base1['matrix'] = base1['matrix'].map(lambda x: x + matrix)
-            base1['label'] = base1['label'].map(lambda x: x + label)
-            cases = pd.concat([cases, base1])
+  # for s in range(len_sentence):
+  #   #単語と接続関係のマッチング
+  #   arr_attr = search_Conjuction(df_conjuction_attr, sentences[s])
+  #   if type(arr_attr) is not int:
+  #       base0 = cases.copy()
+  #       cases.drop(cases.index, inplace=True)
+  #       for index, attr in arr_attr.iterrows():
+  #           label, matrix = makemat(s, attr)    
+  #           base1 = base0.copy()
+  #           base1['matrix'] = base1['matrix'].map(lambda x: x + matrix)
+  #           base1['label'] = base1['label'].map(lambda x: x + label)
+  #           cases = pd.concat([cases, base1])
   return cases
 
 
-"""## 指示語"""
-def Directive_addmat(sentences, matsize, point):
+# """## 指示語"""
+# def Directive_addmat(sentences, matsize, point):
+#   points_mat = np.zeros((matsize, matsize), dtype=int)
+#   for s in range(1,len(sentences)):
+#     if re.match("この|あの|その|これ|それ",sentences[s][0][0]):
+#       ##print(sentences[s][0][0], " in ", s, "文目")
+#       points_mat[s-1][s] += point
+#       #points_mat[s][s-1] += point
+#   ##print(points_mat)
+#   return points_mat
+
+# """## キーワード"""
+# def Keyword_addmat(sentences, matsize, df_keywords):
+#   # points_mat = np.zers((matsize, matsize), dtype=int)
+#   for s in range(len(sentences)-1):
+#     for index, row in df_keywords.iterrows():
+#       keyword = row["word"]
+#       point = row["point"]
+#       for w in sentences[s]:
+#         if keyword in w[0]:
+#           ##print(keyword, " in ", s, "文目")
+#           points_mat[s+row["from"] if s+row["from"]>=0 else 0][s+row["to"]] += point
+#           #points_mat[s+row["to"]][s+row["from"]] += point
+#   ##print(points_mat)
+#   return points_mat
+
+
+# """## 共通の単語"""
+# def Commonword_addmat(sentences, matsize, df_exeptwords, coef, thres):
+#   points_mat = np.zeros((matsize, matsize), dtype=int)
+#   per_mat = np.zeros((matsize, matsize), dtype=float)
+#   arr_exeptword = df_exeptwords["word"].tolist()
+
+#   def extract_words(sentence):
+#     s =[]
+#     for w in sentence:
+#      if re.match('名詞|動詞|形容詞|形容動詞', w[3]):
+#        s.append(w[0])
+#     sentence_words = list(set(s) - set(arr_exeptword))
+#     return sentence_words
+
+#   def compare_sentences(sentence1, sentence2):
+#     arr_commonwords = list(set(sentence1) & set(sentence2))
+#     meanlength = (len(sentence1) + len(sentence2)) / 2
+#     percentage = len(arr_commonwords) / meanlength
+#     ##一致率*係数=点数
+#     #point = int(percentage * coef)
+#     ##一致率>閾値=点数
+#     if percentage >= thres:
+#       point = coef
+#     else:
+#       point = 0
+
+#     return point, percentage
+
+#   for s1 in range(matsize-1):
+#     sentence_words1 = extract_words(sentences[s1])
+#     print("sentences[s1]:"+str(sentence_words1 ))
+#     if(len(sentence_words1)!=0):
+#       for s2 in range(s1+1, matsize):
+#         sentence_words2 = extract_words(sentences[s2])
+#         point, percentage = compare_sentences(sentence_words1, sentence_words2)
+#         per_mat[s1,s2] = percentage
+#         #per_mat[s2,s1] = percentage
+
+#         if point > 0:
+#           ##print(s1+1, "文目と", s2+1, "文目の一致率: ", percentage)
+#           points_mat[s1,s2] = point
+#           #points_mat[s2,s1] = point
+#   ##print(points_mat)
+#   ##print(per_mat)
+#   return points_mat
+"""# 関係分類BERT"""
+def relationship_Classification(paragraph, matsize):
+  sentences = parse_Paragraph(paragraph)
   points_mat = np.zeros((matsize, matsize), dtype=int)
-  for s in range(1,len(sentences)):
-    if re.match("この|あの|その|これ|それ",sentences[s][0][0]):
-      ##print(sentences[s][0][0], " in ", s, "文目")
-      points_mat[s-1][s] += point
-      #points_mat[s][s-1] += point
-  ##print(points_mat)
+  model = BertForSequenceClassification.from_pretrained('../data/Ja_sup_model_transformers')
+  model.eval()  # 推論モードに切り替え
+  for i in range(matsize):
+    for j in range(i+1, matsize):
+    # モデルへの入力と推論
+      vec=make_vec_2sentences(sentences[i],sentences[j])
+      with torch.no_grad():
+        outputs = model(vec)
+      
+  # 結果の解釈
+      logits = outputs.logits
+      probabilities = nn.functional.softmax(logits, dim=-1)
+      print(probabilities)
+      support = probabilities[0][1]/10
+      support = int(support)
+      points_mat[i][j]=support
   return points_mat
-
-"""## キーワード"""
-def Keyword_addmat(sentences, matsize, df_keywords):
-  points_mat = np.zeros((matsize, matsize), dtype=int)
-  for s in range(len(sentences)-1):
-    for index, row in df_keywords.iterrows():
-      keyword = row["word"]
-      point = row["point"]
-      for w in sentences[s]:
-        if keyword in w[0]:
-          ##print(keyword, " in ", s, "文目")
-          points_mat[s+row["from"] if s+row["from"]>=0 else 0][s+row["to"]] += point
-          #points_mat[s+row["to"]][s+row["from"]] += point
-  ##print(points_mat)
-  return points_mat
-
-
-"""## 共通の単語"""
-def Commonword_addmat(sentences, matsize, df_exeptwords, coef, thres):
-  points_mat = np.zeros((matsize, matsize), dtype=int)
-  per_mat = np.zeros((matsize, matsize), dtype=float)
-  arr_exeptword = df_exeptwords["word"].tolist()
-
-  def extract_words(sentence):
-    s =[]
-    for w in sentence:
-     if re.match('名詞|動詞|形容詞|形容動詞', w[3]):
-       s.append(w[0])
-    sentence_words = list(set(s) - set(arr_exeptword))
-    return sentence_words
-
-  def compare_sentences(sentence1, sentence2):
-    arr_commonwords = list(set(sentence1) & set(sentence2))
-    meanlength = (len(sentence1) + len(sentence2)) / 2
-    percentage = len(arr_commonwords) / meanlength
-    ##一致率*係数=点数
-    #point = int(percentage * coef)
-    ##一致率>閾値=点数
-    if percentage >= thres:
-      point = coef
-    else:
-      point = 0
-
-    return point, percentage
-
-  for s1 in range(matsize-1):
-    sentence_words1 = extract_words(sentences[s1])
-    print("sentences[s1]:"+str(sentence_words1 ))
-    if(len(sentence_words1)!=0):
-      for s2 in range(s1+1, matsize):
-        sentence_words2 = extract_words(sentences[s2])
-        point, percentage = compare_sentences(sentence_words1, sentence_words2)
-        per_mat[s1,s2] = percentage
-        #per_mat[s2,s1] = percentage
-
-        if point > 0:
-          ##print(s1+1, "文目と", s2+1, "文目の一致率: ", percentage)
-          points_mat[s1,s2] = point
-          #points_mat[s2,s1] = point
-  ##print(points_mat)
-  ##print(per_mat)
-  return points_mat
-
-
 
 
 """# main"""
@@ -431,30 +455,38 @@ def Point_matrix(paragraph, target):
   print(arr_content,"\n",content_addmat)
   points_mat += content_addmat
 
-  #指示代名詞
-  ##print("---------------指示代名詞------------------------------------------------")
-  #directive_addmat = Directive_addmat(sentences_, target, directive_point)
-  #points_mat += directive_addmat
+  # #指示代名詞
+  # print("---------------指示代名詞------------------------------------------------")
+  # directive_addmat = Directive_addmat(sentences_, target, directive_point)
+  # points_mat += directive_addmat
   
-  #他キーワード+指示語
-  print("---------------キーワード------------------------------------------------")
-  keyword_addmat = Keyword_addmat(sentences_, target, df_keywords)
-  points_mat += keyword_addmat
-  print(keyword_addmat)
+  
 
-  #共通の単語
-  print("---------------共通の単語------------------------------------------------")
-  commonword_addmat = Commonword_addmat(sentences_, target, df_exeptwords, commonwords_coef, commonwords_thres)
-  points_mat += commonword_addmat
-  print(commonword_addmat)
+  # #他キーワード+指示語
+  # print("---------------キーワード------------------------------------------------")
+  # keyword_addmat = Keyword_addmat(sentences_, target, df_keywords)
+  # points_mat += keyword_addmat
+  # print(keyword_addmat)
 
+  # #共通の単語
+  # print("---------------共通の単語------------------------------------------------")
+  # commonword_addmat = Commonword_addmat(sentences_, target, df_exeptwords, commonwords_coef, commonwords_thres)
+  # points_mat += commonword_addmat
+  # print(commonword_addmat)
+
+  print("---------------関係分類------------------------------------------------")
+  relation_point=relationship_Classification(paragraph, target)
+  points_mat += relation_point
+  #relation_point['matrix'] = relation_point['matrix'].map(lambda x: x + points_mat)
+  print(relation_point)
   #接続詞の加点行列
   print("---------------接続詞------------------------------------------------")
   conjuction_addmat = Paragraph_to_Conjuction_addmat(df_conjuction_attr, df_conjuction_points, sentences_, arr_content, df_conjuction_priority_arr)
   conjuction_addmat['matrix'] = conjuction_addmat['matrix'].map(lambda x: x + points_mat)
   print(conjuction_addmat)
-  print("---------------------------------------------------------------------")
   
+  print("---------------------------------------------------------------------")
+
   res_mat = []
   res_label = []
   i = 0

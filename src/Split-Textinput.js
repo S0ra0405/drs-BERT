@@ -7,4 +7,6 @@ function splitParagraph(parag){
        sentences[i] = (i+1)+'\n'+sentences[i]; 
     }
     appendSentences(sentences);
+    var target = document.getElementById('target');
+    target.value = sentences.length;
 }

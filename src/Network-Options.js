@@ -9,6 +9,7 @@ function getBaseNetworkOption(height, width, node_maxheight, node_maxwidth){
                 "direction": "UD",
                 "sortMethod": "directed",
                 "levelSeparation": node_maxheight + 20,
+                //"levelSeparation": 100,
                 "nodeSpacing": node_maxwidth
             }
         },
@@ -25,6 +26,9 @@ function getBaseNetworkOption(height, width, node_maxheight, node_maxwidth){
                     "enabled": true,
                     "type": 'arrow'
                     }
+            },
+            "smooth": {
+                "enabled": false
             }
         },
         "nodes": {
@@ -44,7 +48,7 @@ function getBaseNetworkOption(height, width, node_maxheight, node_maxwidth){
                 "centralGravity": 0.0,
                 "springLength": 500,
                 "springConstant": 0.01,
-        
+
                 "nodeDistance": 50,
                 "springLength": 150,
                 "damping": 1.0

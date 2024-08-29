@@ -49,6 +49,9 @@
       <textarea id="text-input" class="text_in" style="resize:none" placeholder="文章を入力する" name="text_in"></textarea>
     </div>
     <div class="number-inputarea">
+      <div class = "submit">
+        <button class="subbutton" type="submit" value="">SUBMIT</button>
+      </div>
       <div class="target_in">
         <label id="lbltarget" for="target">結論の文</label><br>
         <input id="target" type="number" placeholder="結論の文" value="10" name="target"></input>
@@ -57,8 +60,8 @@
         <label id="lblthres" for="numberthres">閾値</label><br>
         <input id="numberthres" type="number" placeholder="閾値" name="numberthres" value="53" onchange="clearElements('network-array'); act_mynetwork(arr_labels, points_matrix, numberthres.value, matrix_label, flex_threshold_range, contents); return false;"></input>
       </div>
-      <button class="subbutton" type="submit" value="">SUBMIT</button>
     </div>
+    <button id="download" class="dlbutton" type="button" onclick="outEdgesinfo();">Download Image</button>
 
     
   </form>
@@ -68,7 +71,6 @@
   <div id="network-array-button" type="button" onclick="  console.log('button click');
   $('#network-array').toggleClass('active');
   $('#network-array-button').toggleClass('active');"></div>
-  <button id="download" class="dlbutton" type="button" onclick="outEdgesinfo();">Download Image</button>
 
 </body>
 </html>

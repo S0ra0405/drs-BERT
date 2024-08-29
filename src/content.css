@@ -1,8 +1,8 @@
 #mynetwork {
   margin-top: 27px;
   margin-bottom: 2px;
-  min-height: 900px;
-  height: 900px;
+  min-height: 925px;
+  height: 925px;
   resize: vertical;
   width: 79%;
   float: right;
@@ -47,7 +47,7 @@
 #sentences-array {
   margin-top: 27px;
   margin-bottom: 2px;
-  height: 900px;
+  height: 925px;
   width: 20%;
   
   border: 1px solid var(--dark-border-color);
@@ -84,6 +84,9 @@
 }
 .thres_in{
   display: flex;
+}
+.submit{
+  float: left;
 }
 #lblthres{
   font-size: 10px;
