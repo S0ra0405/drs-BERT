@@ -416,7 +416,7 @@ def Point_matrix(paragraph, target):
     words = []
     i=1  
     for sentence in sentences:
-      words.append(""+str(i-1)+". "+''.join([w for w in [sentence[n][0] for n in range(len(sentence)-1)]]))
+      words.append(""+str(i)+". "+''.join([w for w in [sentence[n][0] for n in range(len(sentence)-1)]]))
       i+=1
     return words
 
