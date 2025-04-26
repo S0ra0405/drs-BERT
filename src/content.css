@@ -65,8 +65,24 @@
   background: #303534;
   font-family: consolas;
 }
+.filename_in{
+  font-size: 14px;
+  width: 100%;
+  color: #ffffff;
+  background-color: #575f5d;
+  border: 1px solid var(--dark-border-color);
+  padding: 1% 1% 1% 1%;
+  box-sizing: border-box;
+  font-family: consolas;
+}
+
+.title_in{
+  height: 10px;
+}
+
 .text_in{
   font-size: 14px;
+  height: 15%;
   width: 100%;
   color: #ffffff;
   background-color: #575f5d;

@@ -41,6 +41,7 @@ function AJAXSubmit (oFormElement) {
   }
 }
 **/
+var config = require('./config');
 
 function ajaxSuccess () {
   ////console.log(this.responseText);
@@ -50,7 +51,7 @@ function AJAXSubmit (oFormElement, path) {
   var oReq = new XMLHttpRequest();
   let data =  new FormData(oFormElement)
   oReq.onload = ajaxSuccess;
-  oReq.open("post", "http://127.0.0.1:5000/"+path);
+  oReq.open("post", config.url+path);
   XMLHttpRequest.withCredentials = true;
   XMLHttpRequest.responseType = 'json';
   oReq.send(data);
@@ -65,7 +66,7 @@ function AJAXSubmit_json (oReqElement, path) {
   let data = oReqElement;
   //console.log(data);
   oReq.onload = ajaxSuccess;
-  oReq.open("post", "http://127.0.0.1:5000/"+path);
+  oReq.open("post", config.url+path);
   oReq.setRequestHeader('Content-type', 'application/json; charset=utf-8');
   XMLHttpRequest.withCredentials = true;
   XMLHttpRequest.responseType = 'json';
@@ -80,7 +81,7 @@ function SendLog_json (oReqElement, path){
   let data = oReqElement;
   //console.log(data);
   oReq.onload = ajaxSuccess;
-  oReq.open("post", "http://127.0.0.1:5000/"+path);
+  oReq.open("post", config.url+path);
   oReq.setRequestHeader('Content-type', 'application/json; charset=utf-8');
   XMLHttpRequest.withCredentials = true;
   XMLHttpRequest.responseType = 'json';

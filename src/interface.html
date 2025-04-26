@@ -33,18 +33,20 @@
   <header>
     <a class="logo">Document Review Supporter</a>
   </header>
+  
 
   <div id="sentences-array"></div>
   <div id="mynetwork" draggable="false" ondragstart="drag(event)" ondragover="allowDrop(event)" ondrop="drop(event)"></div>
-
   <button id="edit-button" class="editbutton" type="button" value="">Add Edge</button>
   <button id="delete-button" class="editbutton" type="button" value="">Delete Edge</button>
-
+  
   <form id="subform" onsubmit="AJAXSubmit(this, 'point_matrix'); return false;">
     <button id="spbutton" class="splitbutton" type="button" value="" onclick=" splitParagraph(document.getElementById('text-input').value)">SPLIT</button>
     <button id="undo-button" class="undobutton" type="button" onclick="console.log('undobutton');UndoAction();"></button>
     <button id="redo-button" class="redobutton" type="button" onclick="console.log('redobutton');RedoAction();"></button>
-  
+    <div class="titleinput">
+      <textarea id= "title-input" class="title_in" style="resize:none" placeholder="タイトルを入力する" name= "title_in"></textarea>
+    </div>
     <div class="textinput">
       <textarea id="text-input" class="text_in" style="resize:none" placeholder="文章を入力する" name="text_in"></textarea>
     </div>
@@ -62,7 +64,6 @@
       </div>
     </div>
     <button id="download" class="dlbutton" type="button" onclick="exportCanvas(null);">Download Image</button>
-
     
   </form>
   

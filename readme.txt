@@ -8,6 +8,7 @@ MeCab (https://taku910.github.io/mecab/)
   2. Pythonのインストール
   3. Pythonのパッケージ構成
     python -m pip install --upgrade pip
+<<<<<<< HEAD
     pip3 install flask
     pip3 install flask_cors
     pip3 install pandas
@@ -17,6 +18,17 @@ MeCab (https://taku910.github.io/mecab/)
     pip3 install gensim==3.8.3
     pip3 install scikit-learn==0.22.2.post1
     pip3 install joblib
+=======
+    pip install flask
+    pip install flask_cors
+    pip install pandas
+    pip install numpy
+    pip install pprint
+    pip install MeCab
+    pip install gensim==3.8.3
+    pip install scikit-learn==0.22.2.post1
+    pip install joblib
+>>>>>>> 58ca7b5 (MaC)
     pip install Fukashi
   4. nodejsのインストール
   5. nodejsのパッケージ構成
@@ -29,4 +41,8 @@ MeCab (https://taku910.github.io/mecab/)
   cd src
   http-server
   3. ブラウザで開く
+<<<<<<< HEAD
   http://localhost:8080/interface.html
+=======
+  http://localhost:8080/interface.html
+>>>>>>> 58ca7b5 (MaC)
