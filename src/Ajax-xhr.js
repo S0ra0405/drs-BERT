@@ -55,7 +55,6 @@ function AJAXSubmit (oFormElement, path) {
   XMLHttpRequest.withCredentials = true;
   XMLHttpRequest.responseType = 'json';
   oReq.send(data);
-
   oReq.onreadystatechange = function() {
     generatefromRes(oReq)
   }
