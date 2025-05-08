@@ -38,7 +38,7 @@ function NodeColor(name){
         this.highlight_bd = '#9AFDE8';
     }else if(name == "ground"){
         this.name = name;
-        this.next_name = "cant_predict";
+        this.next_name = "undefine";
         this.border = '#EF476F';
         this.highlight_bd = '#F8A0A3';
     }else{

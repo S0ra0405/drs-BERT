@@ -50,6 +50,7 @@
     <div class="textinput">
       <textarea id="text-input" class="text_in" style="resize:none" placeholder="文章を入力する" name="text_in"></textarea>
     </div>
+ 
     <div class="number-inputarea">
       <div class = "submit">
         <button class="subbutton" type="submit" value="">SUBMIT</button>
@@ -63,7 +64,7 @@
         <input id="numberthres" type="number" placeholder="閾値" name="numberthres" value="53" onchange="clearElements('network-array'); act_mynetwork(arr_labels, points_matrix, numberthres.value, matrix_label, flex_threshold_range, contents); return false;"></input>
       </div>
     </div>
-    <button id="download" class="dlbutton" type="button" onclick="exportCanvas(null);">Download Image</button>
+    <button id="download" class="dlbutton" type="button" onclick="exportCanvas(document.getElementById('title-input').value);">Download Image</button>
     
   </form>
   

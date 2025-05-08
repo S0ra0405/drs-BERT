@@ -1,2 +1,2 @@
-exports.port = 5000
-exports.url = "http://argvis.inf.in.shizuoka.ac.jp.:5000/"
+exports.port = 5000;
+exports.url = 'http://127.0.0.1:5000/';

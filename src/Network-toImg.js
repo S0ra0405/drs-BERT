@@ -7,6 +7,6 @@ function exportCanvas(imgMime){
 
     let link = document.createElement("a");
     link.href = canvas.toDataURL("image/png");
-    link.download = "network.png";
+    link.download = imgMime+".png";
     link.click();
 }

@@ -35,7 +35,7 @@
     //console.log(edgeId,edge_isexist);
     if(!edge_isexist){
       data.id = edgeId;
-      data.label = String(points_matrix[0][data.from-1][data.to-1]);
+      // data.label = String(points_matrix[0][data.from-1][data.to-1]);
       data.color = '#738080';
       data.arrows = {
         to: {

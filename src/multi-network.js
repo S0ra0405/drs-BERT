@@ -36,7 +36,7 @@ function make_nodes(parag_len, labels, cont){
         if(cont[i] == "claim"){
           border_color = '#EF476F';
           highlight_color = '#F8A0A3';
-        }else if(cont[i] == "noattr"){
+        }else if(cont[i] == "undefine"){
           border_color = '#454A49';
           highlight_color = '#A0A7A5';
         }else{
@@ -73,7 +73,7 @@ function make_edges(matrix, thres){
           "id": (Number(i)+1)+"-"+(Number(j)+1),
           "from": i+1, 
           "to": j+1, 
-          "label": String(matrix[i][j]),
+          // "label": String(matrix[i][j]),
           "font": {size: 16},
           "color": '#738080',
           "arrows": {
@@ -249,6 +249,7 @@ function act_mynetwork(labels_, matrix_, thres_, mat_label_, threshold_range, co
      network_arr[elid] = network;
      eventEdgeDblclicled(network);
     }
+    Submit_CreatedNetwork()
   }
   //NetworkContext();
   disableHierarchy(main_network);
@@ -266,6 +267,7 @@ function visNetwork(datas, container, height, width) {
   };
   network_options = getBaseNetworkOption(height, width, node_maxheight, node_maxwidth)
   ////console.log(Array.from({length: parag_len}, (v, i) => i+1));
+  // console.log(data)
   return new vis.Network(container, data, network_options);
 }
 

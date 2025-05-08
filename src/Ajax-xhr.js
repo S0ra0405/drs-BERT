@@ -41,7 +41,6 @@ function AJAXSubmit (oFormElement) {
   }
 }
 **/
-var config = require('./config');
 
 function ajaxSuccess () {
   ////console.log(this.responseText);
@@ -51,7 +50,8 @@ function AJAXSubmit (oFormElement, path) {
   var oReq = new XMLHttpRequest();
   let data =  new FormData(oFormElement)
   oReq.onload = ajaxSuccess;
-  oReq.open("post", config.url+path);
+  
+  oReq.open("post", "http://127.0.0.1:5000/"+path);
   XMLHttpRequest.withCredentials = true;
   XMLHttpRequest.responseType = 'json';
   oReq.send(data);
@@ -63,9 +63,8 @@ function AJAXSubmit (oFormElement, path) {
 function AJAXSubmit_json (oReqElement, path) {
   var oReq = new XMLHttpRequest();
   let data = oReqElement;
-  //console.log(data);
   oReq.onload = ajaxSuccess;
-  oReq.open("post", config.url+path);
+  oReq.open("post", "http://127.0.0.1:5000/"+path);
   oReq.setRequestHeader('Content-type', 'application/json; charset=utf-8');
   XMLHttpRequest.withCredentials = true;
   XMLHttpRequest.responseType = 'json';
@@ -77,14 +76,20 @@ function AJAXSubmit_json (oReqElement, path) {
 
 function SendLog_json (oReqElement, path){
   var oReq = new XMLHttpRequest();
-  let data = oReqElement;
-  //console.log(data);
+  const title = document.querySelector('textarea[name="title_in"]').value;
+  let originalData = typeof oReqElement === 'string' ? JSON.parse(oReqElement) : oReqElement;
+
+    let mergedData = {
+    ...originalData,
+    title: title
+  };
+
   oReq.onload = ajaxSuccess;
-  oReq.open("post", config.url+path);
+  oReq.open("post", "http://127.0.0.1:5000/"+path);
   oReq.setRequestHeader('Content-type', 'application/json; charset=utf-8');
   XMLHttpRequest.withCredentials = true;
   XMLHttpRequest.responseType = 'json';
-  oReq.send(data);
+  oReq.send(JSON.stringify(mergedData));
 }
 
 function generatefromRes(req){

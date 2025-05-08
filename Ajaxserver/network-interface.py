@@ -1,4 +1,5 @@
 import drs_prot as drs
+import write_log
 import io
 
 from flask import Flask, render_template, request, json, send_file
@@ -25,6 +26,7 @@ def set_data(text, target):
 			"content": arr_content,
 			"sentences_full": sentences_full
 			}
+	print("dataはここ"+ str(data))
 	s = json.dumps(data, default=numpy_default)
 	mem = io.BytesIO()
 	mem.write( s.encode('utf-8'))
@@ -37,6 +39,7 @@ def set_data(text, target):
 def pmat():
 	print(request.form)
 	text = request.form.get('text_in')
+	print(text)
 	target = int(request.form.get('target'))
 	return set_data(text,target)
 
@@ -53,6 +56,7 @@ def glog():
 	data = request.get_json()
 	text = json.dumps(data)
 	print(text)
+	write_log.write_edit_log(text)
 	return 'editlog received'
 
 @app.route('/hello')
@@ -60,4 +64,4 @@ def hello():
     return 'hello world!'
 
 if __name__ == '__main__':
-	app.run(threded = True)
+	app.run(threaded = True)

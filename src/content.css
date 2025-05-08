@@ -77,7 +77,10 @@
 }
 
 .title_in{
+  font-size: 10px;
+  width: 30%;
   height: 10px;
+
 }
 
 .text_in{
@@ -94,7 +97,9 @@
 /* .text_in:focus{
   height: 200px;
 } */
-
+/* .textbox{
+  display: grid;
+} */
 .number-inputarea{
   white-space: nowrap;
   float: left;

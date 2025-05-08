@@ -23,7 +23,7 @@ import pprint
 import MeCab
 import ipadic
 
-from gensim.models import Word2Vec
+# from gensim.models import Word2Vec
 from sklearn.multiclass import OneVsRestClassifier
 from sklearn import svm, decomposition
 from sklearn.svm import SVC, OneClassSVM
