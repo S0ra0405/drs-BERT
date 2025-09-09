@@ -9,9 +9,17 @@ function replyEditedNetwork(){
 function Submit_CreatedNetwork(){
     let data = replyEditedNetwork();
     // let dataObject = JSON.parse(data);
-    data.step = "CreareGraph";
+    data.step = "Create";
 
     // data = JSON.stringify(dataObject);
+    let json = JSON.stringify(data);
+    let path = 'editlog';
+    SendLog_json(json, path);
+}
+
+function Submit_ChangeNetwork(){
+    let data = replyEditedNetwork();
+    data.step = "Swap";
     let json = JSON.stringify(data);
     let path = 'editlog';
     SendLog_json(json, path);
@@ -21,7 +29,7 @@ function Submit_EditedNetwork(){
     $('#download').on('click', function(){
         let data = replyEditedNetwork();
         // let dataObject = JSON.parse(data);
-        data.step = "EditedGraph";
+        data.step = "Edited";
         // data = JSON.stringify(dataObject);
         let json = JSON.stringify(data);
         let path = 'editlog';

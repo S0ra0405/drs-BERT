@@ -1,5 +1,31 @@
 {
+  "name": "ArgVis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "dependencies": {
-    "react-live2d": "^1.0.31"
-  }
+    "js-tokens": "^4.0.0",
+    "loose-envify": "^1.4.0",
+    "object-assign": "^4.1.1",
+    "prop-types": "^15.8.1",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-is": "^16.13.1",
+    "react-live2d": "^1.0.31",
+    "scheduler": "^0.19.1",
+    "whatwg-fetch": "^3.6.20",
+    "xmlhttprequest": "^1.8.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "http-server": "^14.1.1"
+  },
+  "scripts": {
+    "start": "concurrently \"npm run start-node\" \"npm run start-python\"",
+    "start-node": "http-server ./src -p 8080",
+    "start-python": "python3 Ajaxserver/network-interface.py"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

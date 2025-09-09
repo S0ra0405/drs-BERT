@@ -249,8 +249,8 @@ function act_mynetwork(labels_, matrix_, thres_, mat_label_, threshold_range, co
      network_arr[elid] = network;
      eventEdgeDblclicled(network);
     }
-    Submit_CreatedNetwork()
   }
+  Submit_CreatedNetwork()
   //NetworkContext();
   disableHierarchy(main_network);
   eventEdgeDblclicled(main_network);
